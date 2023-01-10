@@ -14,7 +14,9 @@ pipeline {
         stage('Docker Build and Push') {
             steps {
                 sh 'mvn docker:build'
-                withDockerRegistry([credentialsId: 'dockerhub-credentials', url: 'https://index.docker.io/v1/']) {
+                withDockerRegistry([serverAddress: "https://index.docker.io/v1/",
+                                      username: "garethpark",
+                                      password: "Everton1995!"]) {
                     sh 'docker push my-repo/spring-boot-project:latest'
                 }
             }
