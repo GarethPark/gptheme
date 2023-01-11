@@ -17,11 +17,12 @@ pipeline {
             steps {
                 withMaven(maven: 'mvn') {
                     sh 'mvn docker:build'
-                }
-                withDockerRegistry([serverAddress: "https://index.docker.io/v1/",
-                                      username: "garethpark",
-                                      password: "Everton1995!"]) {
-                    sh 'docker push my-repo/spring-boot-project:latest'
+
+                    withDockerRegistry([serverAddress: "https://index.docker.io/v1/",
+                                          username: "garethpark",
+                                          password: "Everton1995!"]) {
+                        sh 'docker push my-repo/spring-boot-project:latest'
+                    }
                 }
             }
         }
