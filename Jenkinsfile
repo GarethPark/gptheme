@@ -15,7 +15,9 @@ pipeline {
         }
         stage('Docker Build and Push') {
             steps {
-                sh 'mvn docker:build'
+                withMaven(maven: 'mvn') {
+                    sh 'mvn docker:build'
+                }
                 withDockerRegistry([serverAddress: "https://index.docker.io/v1/",
                                       username: "garethpark",
                                       password: "Everton1995!"]) {
