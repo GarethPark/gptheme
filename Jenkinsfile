@@ -13,7 +13,9 @@ pipeline {
             }
         }
         stage('Build image') {
-           dockerImage = docker.build("garethpark/gp-theme:latest")
+            steps {
+               dockerImage = docker.build("garethpark/gp-theme:latest")
+            }
         }
         stage('Push image') {
             steps{
