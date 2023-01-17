@@ -13,9 +13,7 @@ pipeline {
             }
         }
         stage('Build image') {
-            steps {
-               dockerImage = docker.build("monishavasu/my-react-app:latest")
-            }
+           dockerImage = docker.build("garethpark/gp-theme:latest")
         }
         stage('Push image') {
             steps{
