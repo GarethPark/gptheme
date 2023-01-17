@@ -13,11 +13,15 @@ pipeline {
             }
         }
         stage('Build image') {
+            steps {
                dockerImage = docker.build("monishavasu/my-react-app:latest")
+            }
         }
         stage('Push image') {
-            withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
-            dockerImage.push()
+            steps{
+                withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+                dockerImage.push()
+                }
             }
         }
         stage('Deploy to OpenShift') {
