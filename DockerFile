@@ -1,0 +1,4 @@
+FROM anapsix/alpine-java
+LABEL maintainer="shanem@liatrio.com"
+COPY /target/gptheme-1.5.1.jar /home/gptheme-1.5.1.jar
+CMD ["java","-jar","/home/gptheme-1.5.1.jar"]
