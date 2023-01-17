@@ -1,4 +1,4 @@
-pipeline {
+node {
     //agent any
      agent {
          docker {
