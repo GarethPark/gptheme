@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/spring-projects/spring-boot.git'
+                git 'https://github.com/GarethPark/gptheme'
             }
         }
         stage('Build') {
