@@ -1,9 +1,7 @@
 #!groovy
 
 pipeline {
-    agent {
-        label 'maven'
-    }
+    agent any
     stages {
         stage('Checkout') {
             steps {
@@ -12,18 +10,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh './mvnw clean package'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t my-spring-boot-app .'
+                sh 'docker build -t your_username/your_spring_boot_app .'
             }
         }
-        stage('Push Docker Image') {
+        stage('Push to Docker Hub') {
             steps {
-                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                sh 'docker push my-spring-boot-app'
+                withDockerRegistry([credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/']) {
+                    sh 'docker push your_username/your_spring_boot_app'
+                }
             }
         }
     }
