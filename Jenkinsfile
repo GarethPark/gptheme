@@ -3,7 +3,7 @@
 pipeline {
     agent any
     tools {
-        jdk 'jdk_9.0.4'
+        jdk 'jdk_904'
       }
     stages {
         stage('Checkout') {
