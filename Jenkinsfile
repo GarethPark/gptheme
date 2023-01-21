@@ -4,7 +4,7 @@ pipeline {
     agent any
     tools {
         jdk 'openjdk-171'
-        maven 'Maven-3.8.7'
+        maven 'maven-387'
       }
     stages {
         stage('Log JAVA_HOME') {
