@@ -3,7 +3,7 @@
 pipeline {
     agent any
     tools {
-        jdk 'openjdk-11'
+        jdk 'openjdk-17'
       }
     stages {
         stage('Checkout') {
