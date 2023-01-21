@@ -6,6 +6,11 @@ pipeline {
         jdk 'openjdk-171'
       }
     stages {
+        stage('Log JAVA_HOME') {
+          steps {
+            sh 'echo $JAVA_HOME'
+          }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url:'https://github.com/GarethPark/gptheme'
