@@ -11,6 +11,7 @@ pipeline {
           steps {
             sh 'echo $JAVA_HOME'
             sh 'echo mvn -v'
+            sh 'echo java -v'
           }
         }
         stage('Checkout') {
