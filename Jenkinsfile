@@ -10,8 +10,8 @@ pipeline {
         stage('Log JAVA_HOME') {
           steps {
             sh 'echo $JAVA_HOME'
-            sh 'echo maven -v'
-            sh 'echo java -v'
+            sh 'echo maven -version'
+            sh 'echo java -version'
           }
         }
         stage('Checkout') {
