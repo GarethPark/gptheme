@@ -19,7 +19,7 @@ pipeline {
                 sh 'mvn -version'
             }
         }
-        stage('Checkout') {
+        /*stage('Checkout') {
             steps {
                 git branch: 'main', url:'https://github.com/GarethPark/gptheme'
             }
@@ -40,6 +40,6 @@ pipeline {
                     sh 'docker push your_username/your_spring_boot_app'
                 }
             }
-        }
+        }*/
     }
 }
