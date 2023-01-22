@@ -16,6 +16,7 @@ pipeline {
         }
         stage('Check Maven Installation') {
             steps {
+                sh 'apt-get update && apt-get install maven -y'
                 sh 'mvn -version'
             }
         }
