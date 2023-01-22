@@ -14,6 +14,11 @@ pipeline {
             sh 'echo java -version'
           }
         }
+        stage('Check Maven Installation') {
+            steps {
+                sh 'mvn -version'
+            }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url:'https://github.com/GarethPark/gptheme'
