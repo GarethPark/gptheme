@@ -2,7 +2,7 @@ package com.gptheme.controller;
 
 import com.gptheme.entity.ThemeParkRide;
 import com.gptheme.repository.ThemeParkRideRepository;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
