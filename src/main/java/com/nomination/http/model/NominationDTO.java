@@ -39,4 +39,24 @@ public class NominationDTO {
         private Long requestorHrId;
         private String status;
     }
+    @Data
+    @Builder
+    public static class PostRequest implements NomineeHrId, NomineeEmail, RequestorEmail, RequestorHrId, Status {
+        private Long nomineeHrId;
+        private String nomineeEmail;
+        private String requestorEmail;
+        private Long requestorHrId;
+        private String status;
+    }
+
+    @Data
+    @Builder
+    public static class PostResponse implements Id, NomineeHrId, NomineeEmail, RequestorEmail, RequestorHrId, Status {
+        private Long id;
+        private Long nomineeHrId;
+        private String nomineeEmail;
+        private String requestorEmail;
+        private Long requestorHrId;
+        private String status;
+    }
 }
