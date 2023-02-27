@@ -25,6 +25,19 @@ public class NominationSpecificationBuilder {
     private List<String> statuses;
     private List<ZonedDateTime> approvalDates;
 
+    public NominationSpecificationBuilder withIds(List<Long> ids){
+        this.ids = ids;
+        return this;
+    }
+    public NominationSpecificationBuilder withNomineeHrIds(List<Long> nomineeHrIds){
+        this.nomineeHrIds = nomineeHrIds;
+        return this;
+    }
+    public NominationSpecificationBuilder withNomineeEmails(List<String> nomineeEmails){
+        this.nomineeEmails = nomineeEmails;
+        return this;
+    }
+
     public Specification<Nomination> build(){
         return Specification
                 .where(((Specification<Nomination>) (root, criteriaQuery, criteriaBuilder) -> getPredicate(root, criteriaBuilder, "nomineeHrId", nomineeHrIds))
