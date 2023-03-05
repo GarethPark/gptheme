@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.Set;
 
 import static gp.nomination.unit.model.NominationTestBuilder.aNomination;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,7 +56,7 @@ class NominationGetTest  {
         //Stub EntitlementsClient
     }
 
-    @Test
+    @Test  //?? what are you testing here?
     void getNominationsWithOnlyNomineeParams_ShouldReturnAllNomineeNominations(){
         ParameterizedTypeReference<List<NominationDTO.GetResponse>> responseType = new ParameterizedTypeReference<List<NominationDTO.GetResponse>>() {};
 
@@ -63,5 +64,15 @@ class NominationGetTest  {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody().size() >=3);
+    }
+    @Test
+    void getNominationsWithNomineeHrId_ShouldReturnNominations(){
+        ParameterizedTypeReference<List<NominationDTO.GetResponse>> responseType = new ParameterizedTypeReference<List<NominationDTO.GetResponse>>() {} ;
+        ResponseEntity<List<NominationDTO.GetResponse>> response = restTemplate.exchange("http://localhost:" + port + "/" + url + "&nomineeHRId=1", HttpMethod.GET, null, responseType);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertTrue(response.getBody().size() >=2);
+        assertTrue(response.getBody().stream().map(NominationDTO.GetResponse::getNomineeHrId).allMatch(Set.of(1L)::contains));
+        assertTrue(response.getBody().stream().map(NominationDTO.GetResponse::getNomineeHrId).noneMatch(Set.of(2L)::contains));
     }
 }
