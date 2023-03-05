@@ -87,6 +87,8 @@ public class NominationServiceTest {
             //The verify method checks that the withNomineeHrIds method was called exactly once on the specificationBuilder object,
             //and that the captured value of the nomHrIdsCaptor is null.
 
+            //TODO - have a verify for all filters!
+
             verify(specifcationBuilder, times(1)).withNomineeHrIds(nomHrIdsCaptor.capture());
             assertNull(nomHrIdsCaptor.getValue());
 
@@ -102,4 +104,23 @@ public class NominationServiceTest {
             fail("Should not throw exception " + e);
         }
     }
+
+    @Test
+    void getNominationsById_shouldReturnFilteredNominations(){
+        stubSpecification();
+        NominationDTO.GetRequest request = NominationDTO.GetRequest.builder().ids(List.of(nomination.getId())).build();
+
+        try{
+            List<NominationDTO.GetResponse> result = service.getNominations(request);
+
+            verify(specifcationBuilder, times(1)).withIds(idsCaptor.capture());
+            assertNotNull(result);
+            assertEquals(1, result.size());
+
+        } catch (Exception e){
+            e.printStackTrace();
+            fail("Should not throw exception: " + e);
+        }
+    }
+    //TODO - complete all tests!
 }
