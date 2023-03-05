@@ -1,0 +1,75 @@
+here's an example of how you could structure a Spring Boot project with multiple API versions, including the controllers, DTOs, and service classes
+
+
+src/
+  main/
+    java/
+      com.example/
+        controllers/
+          v1/
+            UserControllerV1.java
+          v2/
+            UserControllerV2.java
+        dtos/
+          v1/
+            UserDtoV1.java
+          v2/
+            UserDtoV2.java
+        services/
+          v1/
+            UserServiceV1.java
+          v2/
+            UserServiceV2.java
+        Application.java
+
+
+
+In this example, we have two versions of the API: version 1 and version 2. Each version has its own set of controllers, DTOs, and services.
+
+The UserControllerV1 and UserControllerV2 classes are the controllers for each version of the API. They handle the incoming requests and call the appropriate service methods.
+
+The UserDtoV1 and UserDtoV2 classes are the DTOs (Data Transfer Objects) for each version of the API. They represent the data being exchanged between the client and the server.
+
+The UserServiceV1 and UserServiceV2 classes are the services for each version of the API. They contain the business logic for each version of the API.
+
+Finally, the Application.java class is the main entry point for the application, and it sets up the Spring Boot configuration.
+
+To use these classes in your application, you would define the appropriate version of the controller, DTO, or service as a dependency in your other classes, using the appropriate version qualifier, such as @Qualifier("v1") or @Qualifier("v2").
+
+For example, in the UserControllerV1 class, you might inject the UserServiceV1 like this:
+
+
+@RestController
+@RequestMapping("/api/v1/users")
+public class UserControllerV1 {
+
+    private final UserServiceV1 userService;
+
+    public UserControllerV1(@Qualifier("v1") UserServiceV1 userService) {
+        this.userService = userService;
+    }
+
+    // API endpoints for version 1 of the API...
+}
+
+And in the UserServiceV1 class, you might inject the UserRepository like this:
+
+
+
+@Service
+@Qualifier("v1")
+public class UserServiceV1 {
+
+    private final UserRepository userRepository;
+
+    public UserServiceV1(@Qualifier("v1") UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // Business logic for version 1 of the API...
+}
+
+
+By following this structure, you can keep your API versions separate and maintainable, while still allowing for future versions to be added as needed.
+
+
